@@ -353,7 +353,11 @@ Route::middleware([
 
         // Perform the search logic
         $products = Products::when($search, function ($query) use ($search) {
-            return $query->where('name', 'like', "%$search%");
+            return $query->where(function ($q) use ($search) {
+                $q->where('product_id', 'like', "%$search%")
+                ->orWhere('name', 'like', "%$search%")
+                ->orWhere('description', 'like', "%$search%");
+            });
         })->paginate(10);
 
         return view('products.products', compact('products', 'search'));
