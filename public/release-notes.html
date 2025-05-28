@@ -7,6 +7,9 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <style>
+    html {
+      scroll-behavior: smooth;
+    }
     .banner-img {
       max-height: 100px;
       object-fit: contain;
@@ -16,6 +19,20 @@
       height: 50px;
       object-fit: cover;
       border-radius: 50%;
+    }
+    .sidebar a {
+      display: block;
+      padding: 0.5rem 1rem;
+      color: #000;
+      text-decoration: none;
+    }
+    .sidebar a:hover {
+      background-color: #e9ecef;
+    }
+    @media (min-width: 768px) {
+      .mobile-sidebar-toggle {
+        display: none;
+      }
     }
   </style>
 </head>
@@ -28,10 +45,31 @@
     <p class="lead mb-0">Wow Inasal Kitchen-Counter Queuing System</p>
   </header>
 
-  <!-- Main Content -->
-  <main class="container my-4" id="release-notes-container">
-    <!-- Dynamic release notes will be injected here -->
-  </main>
+  <!-- Sidebar Toggle Button (Mobile Only) -->
+  <div class="container mt-3 d-md-none text-end">
+    <button class="btn btn-outline-success mobile-sidebar-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarCollapse" aria-expanded="false" aria-controls="sidebarCollapse">
+      ☰ Versions
+    </button>
+  </div>
+
+  <!-- Layout with Sidebar -->
+  <div class="container">
+    <div class="row">
+
+      <!-- Collapsible Sidebar -->
+      <nav class="col-md-3 col-lg-2 collapse d-md-block bg-light sidebar py-4" id="sidebarCollapse">
+        <h5 class="px-3">Versions</h5>
+        <div id="version-links" class="px-2">
+          <!-- Dynamic version links go here -->
+        </div>
+      </nav>
+
+      <!-- Main Content -->
+      <main class="col-md-9 col-lg-10 py-4" id="release-notes-container">
+        <!-- Dynamic release notes will be injected here -->
+      </main>
+    </div>
+  </div>
 
   <!-- Footer -->
   <footer class="text-center text-muted py-4">
@@ -42,9 +80,11 @@
   <!-- JavaScript to Fetch GitHub Releases -->
   <script>
     const container = $('#release-notes-container');
+    const versionLinks = $('#version-links');
 
     $.get('https://api.github.com/repos/mjespelita/wow_inasal/releases', function(data) {
-      data.forEach(release => {
+      data.forEach((release, index) => {
+        const id = `release-${index}`;
         const authorName = release.author?.login || 'Unknown Author';
         const authorAvatar = release.author?.avatar_url || '';
         const releaseDate = new Date(release.published_at).toLocaleString();
@@ -53,8 +93,10 @@
           .filter(line => line.trim().startsWith('*'))
           .map(line => line.replace(/^\*\s*/, ''));
 
+        versionLinks.append(`<a href="#${id}" class="version-link">Version ${release.tag_name}</a>`);
+
         const card = $(`
-          <div class="card mb-4 shadow-sm">
+          <div class="card mb-4 shadow-sm" id="${id}">
             <div class="card-body">
               <h3 class="card-title fw-bold">Version ${release.tag_name}</h3>
               <h6 class="card-subtitle text-muted mb-2">
@@ -76,7 +118,26 @@
         container.append(card);
       });
     });
+
+    // Smooth scroll on version links
+    $(document).on('click', '.version-link', function(e) {
+      e.preventDefault();
+      const target = $($(this).attr('href'));
+      if (target.length) {
+        $('html, body').animate({
+          scrollTop: target.offset().top - 20
+        }, 500);
+
+        // Collapse sidebar on small screens
+        if (window.innerWidth < 768) {
+          const sidebar = bootstrap.Collapse.getInstance(document.getElementById('sidebarCollapse'));
+          if (sidebar) sidebar.hide();
+        }
+      }
+    });
   </script>
 
+  <!-- Bootstrap JS (Required for collapse) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
