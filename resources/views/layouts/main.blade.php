@@ -62,6 +62,10 @@
                 </a>
             @endif
 
+            <a href="release-notes.html" class="">
+                <i class="fas fa-earth"></i> Release Notes
+            </a>
+
             <a href="{{ url('user/profile') }}">
                 <i class="fas fa-user"></i> {{ Auth::user()->name }}
             </a>
