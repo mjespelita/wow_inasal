@@ -1,0 +1,98 @@
+[
+    {
+        "id": 8,
+        "status": "preparing",
+        "sent_to_kitchen_at": "2025-05-26 14:12:34",
+        "done_at": "",
+        "users_id": 1,
+        "table_number": 56,
+        "isTrash": 0,
+        "created_at": "2025-05-26T06:11:59.000000Z",
+        "updated_at": "2025-05-26T06:12:34.000000Z",
+        "total": "750",
+        "discount": 40,
+        "discounted_price": "450",
+        "items": [
+            {
+                "id": 65,
+                "quantity": 1,
+                "total": "80",
+                "subtotal": "80",
+                "user_name": null,
+                "product_name": null
+            },
+            {
+                "id": 66,
+                "quantity": 2,
+                "total": "136",
+                "subtotal": "272",
+                "user_name": null,
+                "product_name": null
+            },
+            {
+                "id": 67,
+                "quantity": 1,
+                "total": "237",
+                "subtotal": "237",
+                "user_name": null,
+                "product_name": null
+            },
+            {
+                "id": 68,
+                "quantity": 1,
+                "total": "161",
+                "subtotal": "161",
+                "user_name": null,
+                "product_name": null
+            }
+        ]
+    },
+    {
+        "id": 9,
+        "status": "preparing",
+        "sent_to_kitchen_at": "2025-05-26 14:15:04",
+        "done_at": "",
+        "users_id": 1,
+        "table_number": 34,
+        "isTrash": 0,
+        "created_at": "2025-05-26T06:13:13.000000Z",
+        "updated_at": "2025-05-26T06:15:04.000000Z",
+        "total": "386",
+        "discount": 20,
+        "discounted_price": "308.8",
+        "items": [
+            {
+                "id": 69,
+                "quantity": 1,
+                "total": "222",
+                "subtotal": "222",
+                "user_name": null,
+                "product_name": null
+            },
+            {
+                "id": 70,
+                "quantity": 1,
+                "total": "35",
+                "subtotal": "35",
+                "user_name": null,
+                "product_name": null
+            },
+            {
+                "id": 71,
+                "quantity": 1,
+                "total": "34",
+                "subtotal": "34",
+                "user_name": null,
+                "product_name": null
+            },
+            {
+                "id": 72,
+                "quantity": 1,
+                "total": "95",
+                "subtotal": "95",
+                "user_name": null,
+                "product_name": null
+            }
+        ]
+    }
+]

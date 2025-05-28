@@ -40,6 +40,8 @@ use App\Http\Middleware\AuthMiddleware;
 use App\Http\Middleware\CounterMiddleware;
 use App\Models\Discounts;
 use Smark\Smark\Math;
+use Smark\Smark\PDFer;
+use Smark\Smark\Dater;
 
 // end of import
 
@@ -93,8 +95,43 @@ Route::middleware([
 ])->group(function () {
 
 
+    Route::get('/export-order-range', function (Request $request) {
+        $request->validate([
+            'start' => 'required|date',
+            'end' => 'required|date',
+        ]);
 
+        $startDate = $request->start . ' 00:00:00';
+        $endDate = $request->end . ' 23:59:59';
 
+        // Filter done orders between the date range
+        $orders = Orders::where('status', 'done')
+            ->whereBetween('created_at', [$startDate, $endDate])
+            ->get();
+
+        // Map each order and include order items with user and product details
+        $ordersWithItems = $orders->map(function ($order) {
+            $order->items = Orderitems::with(['orderUsers', 'products'])
+                ->where('orders_id', $order->id)
+                ->get()
+                ->map(function ($item) {
+                    return [
+                        'id' => $item->id,
+                        'quantity' => $item->quantity,
+                        'total' => Math::convertToMoneyFormat($item->total),
+                        'subtotal' => Math::convertToMoneyFormat($item->subtotal),
+                        'user_name' => $item->orderUsers->name ?? null,
+                        'product_name' => $item->products->name ?? null,
+                    ];
+                });
+
+            return $order;
+        });
+
+        // return response()->json($ordersWithItems);
+
+        return PDFer::exportOrdersByDateRange($ordersWithItems, Dater::humanReadableDateWithDayAndTime($startDate), Dater::humanReadableDateWithDayAndTime($endDate));
+    });
 
 
     Route::get('/dashboard', function () {

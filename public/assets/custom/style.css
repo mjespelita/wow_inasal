@@ -184,7 +184,37 @@ h1,h2,h3,h4,h5,h6,p,a,span,td,label,input,th,li{
         display: block;
     }
 
-    .content {
-        margin-left: 0;
+    /* 👇 Smaller font sizes for all common elements */
+    h1 { font-size: 1.2rem; }
+    h2 { font-size: 1.1rem; }
+    h3 { font-size: 1rem; }
+    h4 { font-size: 0.95rem; }
+    h5 { font-size: 0.9rem; }
+    h6 { font-size: 0.85rem; }
+
+    p, a, span, label, li, td, th, input, button, select, textarea {
+        font-size: 0.75rem !important;
+    }
+
+    .card-title {
+        font-size: 0.9rem;
+    }
+
+    .sidebar a {
+        font-size: 12px;
+    }
+
+    .sidebar .logo {
+        font-size: 16px;
+    }
+
+    .navbar .navbar-brand {
+        font-size: 0.9rem;
+    }
+
+    .btn, .btn-primary, .btn-success, .btn-info {
+        font-size: 0.75rem;
+        padding: 6px 10px;
     }
 }
+

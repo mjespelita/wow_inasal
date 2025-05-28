@@ -8,7 +8,37 @@
         </div>
         <div class='col-lg-6 col-md-6 col-sm-12' style='text-align: right;'>
             {{-- <a href='{{ url('trash-orders') }}'><button class='btn btn-danger'><i class='fas fa-trash'></i> Trash <span class='text-warning'>{{ App\Models\Orders::where('isTrash', '1')->count() }}</span></button></a> --}}
+            <button class='btn btn-primary' data-bs-toggle="modal" data-bs-target="#exampleModal"><i class='fas fa-download'></i> Export Orders</button>
             <a href='{{ route('orders.create') }}'><button class='btn btn-success'><i class='fas fa-plus'></i> Add Orders</button></a>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Export Orders By Date Range</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form action="{{ url('/export-order-range') }}" method="get">
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <label for="start_date" class="form-label">Start Date</label>
+                                    <input type="date" class="form-control" id="start_date" name="start" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="end_date" class="form-label">End Date</label>
+                                    <input type="date" class="form-control" id="end_date" name="end" required>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Export</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 

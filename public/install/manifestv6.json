@@ -1,0 +1,23 @@
+{
+    "id": "/",
+    "short_name": "Wow Inasal",
+    "name": "Wow Inasal Kitchen-Counter Queuing System",
+    "description": "Wow Inasal Kitchen-Counter Queuing System",
+    "icons": [
+        {
+            "src": "./logo/logo-95x95.png",
+            "type": "image/png",
+            "sizes": "95x95"
+        },
+        {
+            "src": "./logo/logo-192x192.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        }
+    ],
+    "theme_color": "#fff",
+    "start_url": "https://wow-inasal-server-host.librifyits.com",
+    "display": "standalone",
+    "background_color": "#fff",
+    "orientation": "portrait"
+}
