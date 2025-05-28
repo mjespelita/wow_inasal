@@ -62,7 +62,7 @@
                 </a>
             @endif
 
-            <a href="release-notes.html" class="">
+            <a href="/release-notes.html" class="">
                 <i class="fas fa-earth"></i> Release Notes
             </a>
 
