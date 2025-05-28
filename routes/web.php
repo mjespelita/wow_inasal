@@ -69,6 +69,7 @@ Route::get('/orders-api', function () {
                     'subtotal' => Math::convertToMoneyFormat($item->subtotal),
                     'user_name' => $item->orderUsers->name ?? null,
                     'product_name' => $item->products->name ?? null,
+                    'product_id' => $item->products->product_id ?? null,
                 ];
             });
 

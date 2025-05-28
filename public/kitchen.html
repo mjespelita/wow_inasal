@@ -92,6 +92,7 @@
                         <thead class="table-light">
                             <tr>
                                 <th>Qty</th>
+                                <th>Code</th>
                                 <th>Product</th>
                                 <th>Total</th>
                                 <th>Subtotal</th>
@@ -107,6 +108,7 @@
                             <td>
                                 <b class="text-danger">${item.quantity}</b>
                             </td>
+                            <td><b>${item.product_id}</b></td>
                             <td>${item.product_name}</td>
                             <td>₱${item.total}</td>
                             <td>₱${item.subtotal}</td>
@@ -160,22 +162,22 @@
 
                 itemsHTML += `
                     <tr class="table-active fw-bold">
-                        <td colspan="3" class="text-end">Sent to kitchen:</td>
+                        <td colspan="4" class="text-end">Sent to kitchen:</td>
                         <td>
                             ${readableSentTime}<br>
                             <small>⏱ <span id="${timerId}"></span></small>
                         </td>
                     </tr>
                     <tr class="table-active fw-bold">
-                        <td colspan="3" class="text-end">Total:</td>
+                        <td colspan="4" class="text-end">Total:</td>
                         <td>${formatMoney(order.total)}</td>
                     </tr>
                     <tr class="table-active fw-bold">
-                        <td colspan="3" class="text-end">Discount:</td>
+                        <td colspan="4" class="text-end">Discount:</td>
                         <td>${order.discount}%</td>
                     </tr>
                     <tr class="table-success fw-bold">
-                        <td colspan="3" class="text-end">Discounted Price:</td>
+                        <td colspan="4" class="text-end">Discounted Price:</td>
                         <td>${formatMoney(order.discounted_price)}</td>
                     </tr>
                     </tbody>
