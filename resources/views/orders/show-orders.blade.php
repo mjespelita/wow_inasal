@@ -407,16 +407,16 @@
                `;
 
                selectedContainer.appendChild(group);
-box.classList.add('selected'); // <-- This line
+                box.classList.add('selected'); // <-- This line
 
-updateTotal();
+                updateTotal();
 
-group.querySelector('.quantity-input')?.addEventListener('input', updateTotal);
-group.querySelector('.remove-item')?.addEventListener('click', () => {
-    group.remove();
-    box.classList.remove('selected'); // remove highlight when product is removed
-    updateTotal();
-});
+                group.querySelector('.quantity-input')?.addEventListener('input', updateTotal);
+                group.querySelector('.remove-item')?.addEventListener('click', () => {
+                    group.remove();
+                    box.classList.remove('selected'); // remove highlight when product is removed
+                    updateTotal();
+                });
            });
        });
 
@@ -577,23 +577,23 @@ group.querySelector('.remove-item')?.addEventListener('click', () => {
 
 
        // Highlight already selected product boxes and bind remove/quantity events
-document.querySelectorAll('#selected-products .selected-item').forEach(group => {
-    const productId = group.getAttribute('data-id');
-    const box = document.querySelector(`.product-box[data-id="${productId}"]`);
-    if (box) {
-        box.classList.add('selected');
-    }
+        document.querySelectorAll('#selected-products .selected-item').forEach(group => {
+            const productId = group.getAttribute('data-id');
+            const box = document.querySelector(`.product-box[data-id="${productId}"]`);
+            if (box) {
+                box.classList.add('selected');
+            }
 
-    // Quantity input
-    group.querySelector('.quantity-input').addEventListener('input', updateTotal);
+            // Quantity input
+            group.querySelector('.quantity-input').addEventListener('input', updateTotal);
 
-    // Remove button
-    group.querySelector('.remove-item').addEventListener('click', () => {
-        group.remove();
-        if (box) box.classList.remove('selected');
-        updateTotal();
-    });
-});
+            // Remove button
+            group.querySelector('.remove-item').addEventListener('click', () => {
+                group.remove();
+                if (box) box.classList.remove('selected');
+                updateTotal();
+            });
+        });
 
 updateTotal();
 
